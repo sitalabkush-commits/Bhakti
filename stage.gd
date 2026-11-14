@@ -111,9 +111,9 @@ func _devotion(w: float, h: float, gy: float) -> void:
 			var by := gy + 25 + row * 60 + 40 * sc
 			var amp := (0.3 + jump) if kirtan else 0.0
 			var col := Color(1, 0.55 + 0.2 * (i % 3) / 2.0, 0.2) if i % 2 == 0 else Color(0.97, 0.95, 0.9)
-			_person(x, by - abs(sin(t * 6.0 + i * 0.9)) * 26.0 * amp * sc, sc, col, amp, t * 6.0 + i)
+			_person(x, by - absf(sin(t * 6.0 + i * 0.9)) * 26.0 * amp * sc, sc, col, amp, t * 6.0 + i)
 	# hero
-	var hy := gy + 150 - jump * 170.0 - (abs(sin(t * 9.0)) * 18.0 if kirtan else 0.0)
+	var hy := gy + 150 - jump * 170.0 - (absf(sin(t * 9.0)) * 18.0 if kirtan else 0.0)
 	_glow(Vector2(w * 0.4, hy - 60), 90, Color(1, 0.9, 0.5))
 	_person(w * 0.4, hy, 1.6, Color(1, 0.85, 0.3), 1.0 if kirtan else 0.2, t * 9.0)
 	if kortal > 0.0:
