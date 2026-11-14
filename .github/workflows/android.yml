@@ -18,9 +18,13 @@ jobs:
           mv /root/.local/share/godot/export_templates/4.3.stable ~/.local/share/godot/export_templates/4.3.stable
           rm -f /root/debug.keystore
           keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /root/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
+          JAVA_PATH=$(dirname $(dirname $(readlink -f $(which javac))))
+          echo "JAVA_PATH=$JAVA_PATH"
+          ls /usr/lib/android-sdk/build-tools /usr/lib/android-sdk/platforms || true
           cat > ~/.config/godot/editor_settings-4.tres <<EOT
           [gd_resource type="EditorSettings" format=3]
           [resource]
+          export/android/java_sdk_path = "$JAVA_PATH"
           export/android/android_sdk_path = "/usr/lib/android-sdk"
           export/android/debug_keystore = "/root/debug.keystore"
           export/android/debug_keystore_user = "androiddebugkey"
